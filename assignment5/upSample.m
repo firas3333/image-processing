@@ -1,0 +1,9 @@
+function    US = upSample(I)
+    I = double(I);
+    [x,y]=size(I);
+    bigimg = zeros([x y] * 2);
+    Xnewsize=x/2;
+    Ynewsize=y/2;
+    fft = fftshift(fft2(I));
+    bigimg((Xnewsize+1):(Xnewsize+x), (Ynewsize+1):(Ynewsize+y)) = fft;
+    US =real( ifft2(fftshift(bigimg))*4);
